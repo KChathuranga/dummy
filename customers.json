@@ -1,0 +1,156 @@
+[
+    {
+        "id": "001",
+        "name": "John Doe",
+        "bankAccount": "123456789",
+        "users": [
+            {
+                "name": "Alice Johnson",
+                "position": "Financial Officer",
+                "email": "johnson@gmail.com"
+            },
+            {
+                "name": "Bob Williams",
+                "position": "Financial Manager",
+                "email": "williams@gmail.com"
+            },
+            {
+                "name": "Charlie Brown",
+                "position": "Chief Financial Officer",
+                "email": "brown@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "002",
+        "name": "Jane Smith",
+        "bankAccount": "987654321",
+        "users": [
+            {
+                "name": "Diana Miller",
+                "position": "Financial Officer",
+                "email": "miller@gmail.com"
+            },
+            {
+                "name": "Eva Davis",
+                "position": "Financial Manager",
+                "email": "davis@gmail.com"
+            },
+            {
+                "name": "Frank Wilson",
+                "position": "Chief Financial Officer",
+                "email": "wilson@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "003",
+        "name": "Michael Davis",
+        "bankAccount": "112233445",
+        "users": [
+            {
+                "name": "Sarah White",
+                "position": "Financial Officer",
+                "email": "white@gmail.com"
+            },
+            {
+                "name": "Jake Black",
+                "position": "Financial Manager",
+                "email": "black@gmail.com"
+            },
+            {
+                "name": "Sophia Green",
+                "position": "Chief Financial Officer",
+                "email": "green@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "004",
+        "name": "Emily Clark",
+        "bankAccount": "223344556",
+        "users": [
+            {
+                "name": "George Lewis",
+                "position": "Financial Officer",
+                "email": "lewis@gmail.com"
+            },
+            {
+                "name": "Chris Turner",
+                "position": "Financial Manager",
+                "email": "turner@gmail.com"
+            },
+            {
+                "name": "Lily White",
+                "position": "Chief Financial Officer",
+                "email": "lily@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "005",
+        "name": "David Martinez",
+        "bankAccount": "334455667",
+        "users": [
+            {
+                "name": "Olivia Perez",
+                "position": "Financial Officer",
+                "email": "perez@gmail.com"
+            },
+            {
+                "name": "Lucas Harris",
+                "position": "Financial Manager",
+                "email": "harris@gmail.com"
+            },
+            {
+                "name": "Ava Moore",
+                "position": "Chief Financial Officer",
+                "email": "moore@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "006",
+        "name": "William Lewis",
+        "bankAccount": "445566778",
+        "users": [
+            {
+                "name": "Mia Robinson",
+                "position": "Financial Officer",
+                "email": "robinson@gmail.com"
+            },
+            {
+                "name": "Ethan Scott",
+                "position": "Financial Manager",
+                "email": "scott@gmail.com"
+            },
+            {
+                "name": "James Walker",
+                "position": "Chief Financial Officer",
+                "email": "walker@gmail.com"
+            }
+        ]
+    },
+    {
+        "id": "007",
+        "name": "Sophia Garcia",
+        "bankAccount": "556677889",
+        "users": [
+            {
+                "name": "Amelia Lewis",
+                "position": "Financial Officer",
+                "email": "amelia@gmail.com"
+            },
+            {
+                "name": "Daniel Walker",
+                "position": "Financial Manager",
+                "email": "daniel@gmail.com"
+            },
+            {
+                "name": "Henry Johnson",
+                "position": "Chief Financial Officer",
+                "email": "henry@gmail.com"
+            }
+        ]
+    }
+]

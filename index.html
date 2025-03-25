@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Customer List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #logoutButton {
+            background-color: #ff512f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        #logoutButton:hover {
+            background-color: #f09819;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            width: 30%;
+        }
+
+        .search-container input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            flex: 1;
+        }
+
+        .search-container button {
+            padding: 8px 15px;
+            background-color: #080710;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #080710;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .add-customer {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .add-customer input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .add-customer button {
+            padding: 8px 12px;
+            background-color: #080710;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-button {
+            background-color: #080710;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-button:hover {
+            background-color: #23a2f6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #080710;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button.close {
+            background-color: #ff512f;
+        }
+
+        .users-section {
+            margin-top: 20px;
+        }
+
+        .users-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .users-section table {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .users-section th {
+            background-color: #080710;
+            color: white;
+        }
+
+        .users-section td {
+            background-color: #f9f9f9;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="logoutButton" onclick="logout()">Logout</button>
+    <h1>Customer List</h1>
+
+    <div class="add-customer">
+        <div>
+            <input type="text" id="customerId" placeholder="Customer ID">
+            <input type="text" id="customerName" placeholder="Customer Name">
+            <input type="text" id="bankAccount" placeholder="Bank Account">
+            <button onclick="addCustomer()">Add Customer</button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by ID or Name...">
+            <button onclick="searchCustomers()"><i class="fas fa-search"></i> Search</button>
+            <button onclick="clearSearch()"><i class="fas fa-times"></i> Clear</button>
+        </div>
+    </div>
+
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Bank Account</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="modal" id="bankGuaranteeModal">
+        <div class="modal-content">
+            <h2>Bank Guarantee Details</h2>
+            <form id="guaranteeForm">
+                <label for="guaranteeAmount">Guarantee Amount:</label>
+                <input type="text" id="guaranteeAmount" placeholder="Enter amount" required>
+
+                <label for="issuedDate">Issued Date:</label>
+                <input type="date" id="issuedDate" required>
+
+                <label for="expirationDate">Expiration Date:</label>
+                <input type="text" id="expirationDate" required>
+
+                <label for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" placeholder="Enter bank name" required>
+
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" rows="4" placeholder="Enter remarks"></textarea>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <button type="submit">Save Guarantee Details</button>
+                    <button type="button" class="close" onclick="closeModal()">Close</button>
+                </div>
+            </form>
+
+            <div class="users-section">
+                <h3>Customer Users</h3>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Job Position</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let customers = [];
+        let selectedCustomerId = null;
+        let allCustomers = [];
+
+        function loadCustomers() {
+            fetch('customers.json')
+                .then(response => response.json())
+                .then(data => {
+                    customers = data;
+                    allCustomers = [...data];
+                    renderCustomers();
+                });
+        }
+
+        function renderCustomers(customersToRender = customers) {
+            const tbody = document.querySelector('#customerTable tbody');
+            tbody.innerHTML = '';
+
+            if (customersToRender.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="4" class="no-results">No customers found</td>
+                `;
+                tbody.appendChild(row);
+                return;
+            }
+
+            customersToRender.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${customer.id}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.bankAccount}</td>
+                    <td>
+                        <button class="view-button" onclick="viewCustomer('${customer.id}')">View</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function searchCustomers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            if (!searchTerm) {
+                renderCustomers(allCustomers);
+                return;
+            }
+
+            const filteredCustomers = allCustomers.filter(customer =>
+                customer.id.toLowerCase().includes(searchTerm) ||
+                customer.name.toLowerCase().includes(searchTerm)
+            );
+
+            renderCustomers(filteredCustomers);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            renderCustomers(allCustomers);
+        }
+
+        function viewCustomer(customerId) {
+            selectedCustomerId = customerId;
+            const modal = document.getElementById('bankGuaranteeModal');
+            modal.style.display = 'flex';
+
+            fetch('customers.json')
+                .then(response => response.json())
+                .then(data => {
+                    const customer = data.find(c => c.id === customerId);
+                    if (customer) {
+                        renderUsers(customer.users);
+                    }
+                });
+
+            fetch('bank_guarantees.json')
+                .then(response => response.json())
+                .then(data => {
+                    const guarantee = data.find(g => g.customerId === customerId);
+                    if (guarantee) {
+                        document.getElementById('guaranteeAmount').value = guarantee.guaranteeAmount;
+                        document.getElementById('issuedDate').value = guarantee.issuedDate;
+                        document.getElementById('expirationDate').value = guarantee.expirationDate;
+                        document.getElementById('bankName').value = guarantee.bankName;
+                        document.getElementById('remarks').value = guarantee.remarks || '';
+                    } else {
+                        document.getElementById('guaranteeForm').reset();
+                    }
+                });
+        }
+
+        function renderUsers(users) {
+            const tbody = document.querySelector('#usersTable tbody');
+            tbody.innerHTML = '';
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = ` 
+                    <td>${user.name}</td>
+                    <td>${user.position}</td>
+                    <td>${user.email}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('bankGuaranteeModal');
+            modal.style.display = 'none';
+        }
+
+        function addCustomer() {
+            const id = document.getElementById('customerId').value;
+            const name = document.getElementById('customerName').value;
+            const bankAccount = document.getElementById('bankAccount').value;
+
+            if (id && name && bankAccount) {
+                const newCustomer = {
+                    id: id,
+                    name: name,
+                    bankAccount: bankAccount,
+                    users: []
+                };
+                customers.push(newCustomer);
+                allCustomers.push(newCustomer);
+                renderCustomers();
+                saveCustomers();
+                document.getElementById('customerId').value = '';
+                document.getElementById('customerName').value = '';
+                document.getElementById('bankAccount').value = '';
+            } else {
+                alert('Please fill all fields');
+            }
+        }
+
+        function saveCustomers() {
+            console.log('Customers saved:', customers);
+        }
+        
+        function logout() {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('guaranteeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const guaranteeAmount = document.getElementById('guaranteeAmount').value;
+            const issuedDate = document.getElementById('issuedDate').value;
+            const expirationDate = document.getElementById('expirationDate').value;
+            const bankName = document.getElementById('bankName').value;
+            const remarks = document.getElementById('remarks').value;
+
+            fetch('bank_guarantees.json')
+                .then(response => response.json())
+                .then(data => {
+                    const guarantees = data.filter(g => g.customerId !== selectedCustomerId);
+                    guarantees.push({
+                        customerId: selectedCustomerId,
+                        guaranteeAmount: guaranteeAmount,
+                        issuedDate: issuedDate,
+                        expirationDate: expirationDate,
+                        bankName: bankName,
+                        remarks: remarks
+                    });
+                    console.log('Guarantee details saved:', guarantees);
+                    alert('Guarantee details saved successfully!');
+                    closeModal();
+                });
+        });
+
+        document.getElementById('searchInput').addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                searchCustomers();
+            }
+        });
+
+        loadCustomers();
+    </script>
+</body>
+
+</html>
