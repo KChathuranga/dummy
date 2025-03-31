@@ -2,7 +2,7 @@
     {
         "customerId": "001",
         "guaranteeAmount": "$100,000",
-        "issuedDate": "2023-01-01",
+        "issuedDate": "2025-04-05",
         "expirationDate": "2023-12-31",
         "bankName": "Bank of America",
         "remarks": "Initial guarantee for project XYZ."
@@ -10,7 +10,7 @@
     {
         "customerId": "002",
         "guaranteeAmount": "$200,000",
-        "issuedDate": "2023-02-01",
+        "issuedDate": "2025-04-10",
         "expirationDate": "2024-01-31",
         "bankName": "Chase Bank",
         "remarks": "Renewed guarantee for project ABC."
@@ -18,7 +18,7 @@
     {
         "customerId": "003",
         "guaranteeAmount": "$150,000",
-        "issuedDate": "2023-03-01",
+        "issuedDate": "2025-04-04",
         "expirationDate": "2023-12-31",
         "bankName": "Wells Fargo",
         "remarks": "Guarantee for project DEF."
@@ -26,7 +26,7 @@
     {
         "customerId": "004",
         "guaranteeAmount": "$180,000",
-        "issuedDate": "2023-04-01",
+        "issuedDate": "2025-04-09",
         "expirationDate": "2024-03-31",
         "bankName": "Citibank",
         "remarks": "Initial guarantee for project GHI."
