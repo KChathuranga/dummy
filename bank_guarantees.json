@@ -2,40 +2,40 @@
     {
         "customerId": "001",
         "guaranteeAmount": "$100,000",
-        "issuedDate": "2025-04-05",
-        "expirationDate": "2023-12-31",
+        "issuedDate": "2023-12-31",
+        "expirationDate": "2025-04-05",
         "bankName": "Bank of America",
         "remarks": "Initial guarantee for project XYZ."
     },
     {
         "customerId": "002",
         "guaranteeAmount": "$200,000",
-        "issuedDate": "2025-04-10",
-        "expirationDate": "2024-01-31",
+        "issuedDate": "2024-01-31",
+        "expirationDate": "2025-04-10",
         "bankName": "Chase Bank",
         "remarks": "Renewed guarantee for project ABC."
     },
     {
         "customerId": "003",
         "guaranteeAmount": "$150,000",
-        "issuedDate": "2025-04-04",
-        "expirationDate": "2023-12-31",
+        "issuedDate": "2023-12-31",
+        "expirationDate": "2025-04-04",
         "bankName": "Wells Fargo",
         "remarks": "Guarantee for project DEF."
     },
     {
         "customerId": "004",
         "guaranteeAmount": "$180,000",
-        "issuedDate": "2025-04-09",
-        "expirationDate": "2024-03-31",
+        "issuedDate": "2024-03-31",
+        "expirationDate": "2025-04-09",
         "bankName": "Citibank",
         "remarks": "Initial guarantee for project GHI."
     },
     {
         "customerId": "005",
         "guaranteeAmount": "$250,000",
-        "issuedDate": "2023-05-01",
-        "expirationDate": "2024-04-30",
+        "issuedDate": "2024-04-30",
+        "expirationDate": "2025-05-01",
         "bankName": "Bank of America",
         "remarks": "Guarantee for project JKL."
     },
